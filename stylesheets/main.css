@@ -1,0 +1,197 @@
+html { overflow-x: hidden; overflow-y: auto; }
+body{
+    font-family: "\5fae\8f6f\96c5\9ed1";
+}
+li{
+    list-style-type: none;s
+}
+.m-bottom40{
+    margin-bottom:40px; 
+}
+.home{
+  background: url(../img/1473322235905.png);
+  text-align: center;
+  /*padding-top:100px;*/
+  overflow: hidden;
+  height:100%;
+}
+.home .headpic{
+    background: url(../img/565c3f6dc04c2.jpg) no-repeat center center;
+    width: 300px;
+    height: 300px;
+    border-radius: 100%;
+    border:10px solid transparent;
+    border-color: rgba(253, 115, 29, 0.5) rgba(253, 115, 29, 0.5) rgba(253, 115, 29, 0.5) rgba(253, 115, 29, 0.5);
+    margin: 65px auto 0;
+}
+.home .rotate-border{
+    display: block;
+    width:30%;
+    height:30%;
+    animation: circle 5s linear 0s infinite;
+    -moz-animation: circle 5s linear 0s infinite;
+    -webkit-animation: circle 5s linear 0s infinite;
+    -o-animation: circle 5s linear 0s infinite;
+    transform-origin: 166% 165%;
+}
+
+.rotate-border::after{
+    content:'';
+    border:5px solid transparent;
+    border-color: rgba(253, 115, 29, 1) rgba(253, 115, 29, 0.3) rgba(253, 115, 29, 0.5) rgba(253, 115, 29, 0.75);
+    width: 5px;
+    height:5px;
+    border-radius: 100%;
+    position:absolute;
+    box-shadow: 0 0 10px #000000;
+}
+
+.title-box{
+    margin: 60px 0 30px;
+    font-size: 63px;
+    color: #ffffff;
+    text-shadow: 0px 1px 6px #000000;
+}
+
+@keyframes circle{
+    from{transform: rotate(0deg);}
+    to{transform: rotate(360deg);}
+}
+
+.home-icon{
+    width: 42px;
+    height: 52px;
+    display: inline-block;
+    vertical-align: bottom;
+}
+.map-icon{
+    background: url("../img/map-icon.png") no-repeat -61px 0;
+}
+.home-font{
+    font-size: 25px;
+    color: #ffffff;
+    padding: 0 10px;
+}
+.phone-icon{
+    background: url("../img/map-icon.png") no-repeat 0 0;
+}
+.experience-icon{
+    background: url("../img/map-icon.png") no-repeat -128px 0;
+}
+.experience-icon:after{
+    content: "2";
+    display: block;
+    background: url("../img/map-icon.png") no-repeat -196px 0;
+    width: 50px;
+    height: 35px;
+    font-size: 25px;
+    color: #ffffff;
+    line-height: 28px;
+    position: absolute;
+    top: -13px;
+    left: 42px;
+    font-weight: bold;
+    text-align: center;
+}
+.main-info{
+    width: 635px;
+    padding: 0;
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    margin: 0 -310px;
+}
+.main-info li{
+    float: left;
+    padding: 0 20px;
+}
+.introduce{
+    background: #f2f2f2;
+    padding-top: 30px; 
+}
+.introduce .intro-con{
+    width: 700px;
+    padding-top: 20px;
+    margin: 0 auto;
+    border-left: 5px solid #ffffff;
+}
+.introduce .intro-con .title{
+    display: block;
+    font-size: 18px;
+    padding-left: 30px;
+    font-weight: normal;
+    position: relative;
+}
+.introduce .intro-con .title::after{
+    content: "";
+    display: block;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #cccccc;
+    border-radius: 100%;
+    position: absolute;
+    top: 4px;
+    left: -12px;
+    background: #ffffff;
+}
+.introduce .intro-con .title .peo-icon{
+    background: url(../img/map-icon.png) no-repeat -307px 0px;
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    vertical-align: middle;
+    padding-right: 10px;
+}
+.introduce .intro-con .title .skill-icon{
+    background: url(../img/map-icon.png) no-repeat -267px 0px;
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    vertical-align: middle;
+    padding-right: 10px;
+}
+.introduce .intro-con .title .exp-icon{
+    background: url(../img/map-icon.png) no-repeat -348px 0px;
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    vertical-align: middle;
+    padding-right: 10px;
+}
+.peo-info ul li{
+    float: left;
+    width: 50%;
+    font-size: 14px;
+    line-height: 27px;
+}
+.skill-info .left-box{
+    width: 40%;
+    padding-left: 40px;
+    float: left;
+}
+.canvas-sty{
+    float:left;
+    margin-left: 50px;
+    margin-bottom:20px; 
+}
+.exp-stress{
+    font-size: 18px;
+    font-weight: bold;
+}
+.exps-info ul li{
+    border-bottom: 1px solid #cccccc;
+}
+.exps-info ul li:last-child{
+    border-bottom:0;
+}
+.works{
+    background: #0a1517;
+    height: 100%;
+    overflow: hidden;
+}
+.works h2{
+    text-align: center;
+    margin: 40px 0 20px;
+    color: #ffffff;
+    font-size: 35px;
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        body{
+            background-color: #333;
+        }
+        .con{
+            width: 300px;
+            margin: auto;
+            padding: 10% 0;
+            position: relative;
+        }
+        .sha{
+            width: 300px;
+            height: 300px;
+            border: 1px solid #fff;
+            transform:rotate(45deg);
+            -ms-transform:rotate(45deg);
+        }
+        .line{
+            position: absolute;
+            transform:rotate(67.5deg);
+            -ms-transform:rotate(67.5deg);
+            top: -44px;
+            left: 152px;
+
+        }
+        .line div{
+            width: 358px;
+            height: 150px;
+            position: absolute;
+            border-left: 1px solid #fff;
+            border-right: 1px solid #fff;
+        }
+        .l2{
+            transform:rotate(90deg);
+            -ms-transform:rotate(90deg);
+        }
+        .l3{
+            transform:rotate(45deg);
+            -ms-transform:rotate(45deg);
+
+        }
+        .l4{
+            transform:rotate(-45deg);
+            -ms-transform:rotate(-45deg);
+        }
+        .clip{
+            -webkit-clip-path:  polygon(49px 198px, 63px 164px, 208px 19px, 242px 4px, 276px 18px, 423px 164px, 437px 198px, 426px 225px, 271px 380px, 244px 393px, 214px 381px, 60px 228px);
+            clip-path:  polygon(49px 198px, 63px 164px, 208px 19px, 242px 4px, 276px 18px, 423px 164px, 437px 198px, 426px 225px, 271px 380px, 244px 393px, 214px 381px, 60px 228px);
+            position: relative;
+            top: -347px;
+            left: -91px;
+            z-index: -1;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+      <div class="con">
+          <div class="sha">
+              <div class="line">
+              <div class="l1"></div>
+              <div class="l2"></div>
+              <div class="l3"></div>
+              <div class="l4"></div>
+          </div>
+      </div>
+          <img src="http://image.zhangxinxu.com/image/study/s/s512/mm1.jpg" class="clip">
+      </div>
+</body>
+</html>

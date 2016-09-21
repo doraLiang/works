@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>下拉菜单</title>
+    <link rel="stylesheet" href="css/select.css" type="text/css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript">
+           $(function(){
+               $(".select > p").on("click",function(e){
+                   $(".select").toggleClass("open");
+                   e.stopPropagation();            //终止事件在传播过程的捕获、目标处理或起泡阶段进一步传播
+               });
+               $(".select ul li").on("click",function(e){
+                  var  _this=$(this);
+                  $(".select > p").text(_this.attr('date-value'));
+                  _this.addClass('selected').siblings().removeClass('selected');
+                   $(".select").removeClass("open");
+                   e.stopPropagation();
+               });
+               $(".select2 > p").on("click",function(e){
+                   $(".select2").toggleClass("open");
+                   e.stopPropagation();
+               });
+               $(".select2 ul li").on("click",function(e){
+                   var  _this=$(this);
+                   $(".select2 > p").text(_this.attr('date-value'));
+                   _this.addClass('selected').siblings().removeClass('selected');
+                   $(".select2").removeClass("open");
+                   e.stopPropagation();
+               });
+               $(document).on("click",function(){
+                   $(".select").removeClass("open");
+                   $(".select2").removeClass("open");
+               })
+           });
+    </script>
+</head>
+<body>
+      <div class="content">
+          <div class="select">
+              <p>所有选项</p>
+              <ul>
+                  <li date-value="所有选项" class="selected">所有选项</li>
+                  <li date-value="html">html</li>
+                  <li date-value="css">css</li>
+                  <li date-value="javascript">javascript</li>
+                  <li date-value="jquery">jquery</li>
+              </ul>
+          </div>
+          <div class="select2">
+              <p>所有选项</p>
+              <i></i>
+              <ul>
+                  <li date-value="所有选项" class="selected">所有选项</li>
+                  <li date-value="html">html</li>
+                  <li date-value="css">css</li>
+                  <li date-value="javascript">javascript</li>
+                  <li date-value="jquery">jquery</li>
+              </ul>
+          </div>
+      </div>
+</body>
+</html>

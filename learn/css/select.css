@@ -1,0 +1,161 @@
+body{background-color: #01eeff;}
+body,p,ul{margin: 0;padding: 0;}
+.content{padding-top:3%;}
+.select{
+    width: 300px;
+    height: 40px;
+    margin:0 auto;
+    font-size:16px;
+    font-family: "Microsoft Yahei";
+    background-color: #fff;
+    position: relative;
+    cursor:pointer;
+}
+.select:after{
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-left:1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    transform:rotate(-45deg);
+    -ms-transform:rotate(-45deg);
+    transition: transform.3s ease-out;
+}
+.select.open:after{
+    transform:rotate(-225deg);
+    -ms-transform:rotate(-225deg);
+    top: 18px;
+    transition: all .3s ease-in;
+}
+.select p{
+    padding: 0 15px;
+    line-height: 40px;
+}
+.select ul{
+    list-style-type: none;
+    background-color: #fff;
+    position: absolute;
+    width: 100%;
+    top: 40px;
+    left: 0;
+    max-height: 0;
+    overflow-y: auto;
+    transition: max-height 1s ease-out;
+}
+.select.open ul{
+    max-height: 200px;
+    transition: max-height .2s ease-in;
+    animation:slide-dowm .5s ease-in;
+    -webkit-animation:slide-dowm .5s ease-in;
+}
+
+.select ul li{
+    padding: 0 15px;
+    cursor:pointer;
+    line-height: 40px;
+}
+.select ul li:hover{
+   background-color: #ccc;
+}
+.select ul li.selected{
+    background-color: #39f;
+    color: #fff;
+}
+@-webkit-keyframes slide-dowm{
+    0%{transform:scale(1,0);-ms-transform:scale(1,0);}
+    25%{transform:scale(1,1.2);-ms-transform:scale(1,1.2);}
+    50%{transform:scale(1,0.85);-ms-transform:scale(1,0.85);}
+    75%{transform:scale(1,1.05);-ms-transform:scale(1,1.05);}
+    100%{transform:scale(1,1);-ms-transform:scale(1,1);}
+}
+
+/*----------------------------*/
+.select2{
+    width: 300px;
+    height: 40px;
+    margin:0 auto;
+    font-size:16px;
+    font-family: "Microsoft Yahei";
+    background-color: #fff;
+    position: relative;
+    cursor:pointer;
+    margin-top: 300px;
+}
+.select2 i{
+    position: absolute;
+    width: 20px;
+    height: 11px;
+    border-bottom: 3px solid #ccc;
+    border-top: 3px solid #ccc;
+    top: 12px;
+    right: 10px;
+}
+.select2 i:after{
+    content: "";
+    background-color: #ccc;
+    position: absolute;
+    width: 20px;
+    height: 3px;
+    top: 4px;
+    right: 0px;
+}
+.select2 p{
+    padding: 0 15px;
+    line-height: 40px;
+}
+.select2 ul{
+    list-style-type: none;
+    background-color: #fff;
+    position: absolute;
+    width: 100%;
+    top: 20px;
+    left: 0;
+    overflow: hidden;
+    z-index: 1;
+    height: 0;
+
+}
+.select2 ul li{
+    padding: 0 15px;
+    cursor:pointer;
+    line-height: 40px;
+    opacity: 0;
+    transform:translateX(300px);
+    -ms-transform:translateX(300px);
+}
+.select2 ul li:hover{
+    background-color: #ccc;
+}
+.select2 ul li.selected{
+    background-color: #39f;
+    color: #fff;
+}
+.select2.open ul{
+    height: 200px;
+    top: -80px;
+}
+.select2.open ul li{
+    opacity: 1;
+    transform:translateX(0);
+    -ms-transform:translateX(0);
+}
+.select2.open ul li:nth-child(1){
+    transition: opacity .2s ease-in .05s,transform .3s ease-out .05s;
+}
+.select2.open ul li:nth-child(2){
+    transition: opacity .2s ease-in .15s,transform .3s ease-out .15s;
+}
+.select2.open ul li:nth-child(3){
+    transition: opacity .2s ease-in .25s,transform .3s ease-out .25s;
+}
+.select2.open ul li:nth-child(4){
+    transition: opacity .2s ease-in .35s,transform .3s ease-out .35s;
+}
+.select2.open ul li:nth-child(5){
+    transition: opacity .2s ease-in .45s,transform .3s ease-out .45s;
+}
+

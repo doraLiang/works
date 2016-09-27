@@ -1,18 +1,25 @@
-/* 
-* @Author: anchen
-* @Date:   2016-09-08 15:19:08
-* @Last Modified by:   anchen
-* @Last Modified time: 2016-09-09 14:10:29
-*/
-
 $(document).ready(function(){
     var height=$(window).height();
+    var ele=[];
     $('body').height(height);
     circle(95/100,0,0,"#b3ccdc","#6899ba",'html',4);
     circle(90/100,80,50,"#f8e4b6","#f2c96d",'css',3);
     circle(80/100,0,100,"#a3c7a6","#478f4d",'js',2);
     circle(88/100,160,0,"#dfa4cb","#c04a98",'jq',2);
     circle(60/100,160,100,"#dda3a1","#bb4843",'seaJs',5);
+
+    //nav点击事件
+    $('.head-nav').find('li').on('click',function(){
+        var index=$(this).index();
+        //获取anchor的坐标
+        for(var i=0;i<3;i++){
+            ele.push($('div.anchor').eq(i).position().top);
+        }
+        $('body').animate({
+            scrollTop : ele[index] + 'px'
+        },1000);
+    })
+
 });
 function circle(percent,movex,movey,c1,c2,con,num){
 	var p=percent * 100;

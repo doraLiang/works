@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+            body{
+                margin-top: 100px;
+                background: #00beb6;
+            }
+            .per{
+                -webkit-perspective: 800px;
+                   -moz-perspective: 800px;
+                   -ms--perspective: 800px;
+                         perspective: 800px;
+
+
+                width: 900px;
+                min-height: 100px;
+                margin:0 auto;
+
+            }
+            .pic_transition{
+                -webkit-transition: -webkit-transform 1s;
+                   -moz-transition: -moz-transform 1s;
+                        transition: transform 1s;
+                
+                -webkit-transform-style: preserve-3d;
+                  -moz-transform-style: preserve-3d;
+                       transform-style: preserve-3d;
+
+                position:relative;
+                left:50%;
+                height:350px;
+                width:200px;
+
+                margin-left: -100px;
+            }
+            .pic_transition img{
+                position: absolute;width: 200px;bottom: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <audio autoplay="autoplay" loop="loop">
+            <source src="beij.mp3" type="audio/mp3" />
+        </audio>
+        <div class="per">
+            <div class='pic_transition'>
+                <img src="../../img/565c3f6dc04c2.jpg" alt="" />
+                <img src="../../img/mm1.jpg" alt="" />
+                <img src="../../img/3.jpg" alt="" />
+                <img src="../../img/4.jpg" alt="" />
+                <img src="../../img/5.jpg" alt="" />
+                <img src="../../img/1.jpg" alt="" />
+                <img src="../../img/2.jpg" alt="" />
+                <img src="../../img/1473322235905.png" alt="" />
+                <img src="../../img/css3.jpg" alt="" />
+        </div>
+        </div>
+        <script type="text/javascript">
+            window.onload=function(){
+                var pic_img=document.getElementsByTagName('img');
+                var tranZ=50+50/Math.tan(20 / 180 * Math.PI);
+                var r=360 / pic_img.length;
+                var index=0;
+
+                //设置变形
+                function transform(ele,value,key){
+                    key='Transform';
+                     ["Moz", "O", "Ms", "Webkit", ""].forEach(function(prefix) {
+                        ele.style[prefix + key] = value;
+                    }); 
+                      return ele;
+                }
+
+                //遍历图片，给每个图片添加transform
+                for(var i=0;i<pic_img.length;i++){
+                    transform(pic_img[i],'rotateY('+i * r +'deg) translateZ('+300+'px)');
+                    pic_img[i].onmouseover=function() {
+                        console.log();
+                         clearInterval(auto);
+                        auto = null;
+                    };
+                    pic_img[i].onmouseout=function() {
+                        if (!auto) {
+                            auto = setInterval(setInter, 1000);
+                        }
+                    };
+                }
+
+                //计时器方法
+                function setInter(){
+                    index++;
+                    var val = index * (360 / pic_img.length);
+                    if(val >= 400){
+                        // val = 0;
+                        // index = 0;
+                    }
+                    var con = document.getElementsByClassName('pic_transition');
+                    transform(con[0], 'rotateY('+val+'deg)');
+                }
+
+                var auto = setInterval(setInter, 1000);
+                
+                document.body.onfocus = function() {
+                    if (!auto) {
+                        auto = setInterval(setInter, 1000);
+                    }
+                };
+
+                document.body.onblur = function() {
+                    clearInterval(auto);
+                    auto = null;
+                };
+            }
+        </script>
+    </body>
+</html>

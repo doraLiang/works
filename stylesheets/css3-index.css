@@ -1,0 +1,447 @@
+body{
+    background: #01eeff;
+}
+h3{
+    text-align: center;
+    font-size: 25px;
+    color: #ffffff;
+    text-shadow: 1px 1px#000000;
+}
+/*3d球动画*/
+.ball-box{
+    width: 300px;
+    height: 300px;
+    margin:105px auto;
+   /* position: absolute;
+    left:50%;
+    top:50%;
+    margin: -150px 0 0 -150px;*/
+   perspective-origin: 50% 50%; /*X 轴和 Y 轴的位置，相对于镜头位置,其子元素会获得透视效果，而不是元素本身。*/
+    perspective:3000px;/*定义 3D 元素距视图的距离，相当于镜头，其子元素会获得透视效果，而不是元素本身。*/
+    -webkit-perspective:3000px;
+}
+.ball{
+     height: 100%;
+     transform-style:preserve-3d; /*将子元素保留其 3D 位置。*/
+    animation:rotate-3d 10s  linear infinite;
+    -webkit-animation:rotate-3d 10s  linear infinite;
+}
+.ball:after{
+    content: " ";
+    width: 1px;
+    height: 500px;
+    background-color: #fff;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform:translate(150px,-100px);
+    -ms-transform:translate(150px,-100px);
+
+}
+.ball div{
+    border: 1px solid #fff;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 100%;
+}
+.line-1{transform:rotateY(0);-ms-transform:rotateY(0);}
+.line-2{transform:rotateY(36deg);-ms-transform:rotateY(36deg);}
+.line-3{transform:rotateY(72deg);-ms-transform:rotateY(72deg);}
+.line-4{transform:rotateY(108deg);-ms-transform:rotateY(108deg);}
+.line-5{transform:rotateY(144deg);-ms-transform:rotateY(144deg);}
+@keyframes rotate-3d{
+    0%{
+        transform:rotateZ(-30deg) rotateY(0);     /*y轴旋转*/
+        -ms-transform:rotateZ(-30deg) rotateY(0);
+        /*transform: rotateZ(-30deg) rotateX(0);    x轴旋转*/
+        /*transform: rotateZ(-30deg)*/
+    }
+    100%{
+        transform:rotateZ(-30deg) rotateY(360deg);
+        -ms-transform:rotateZ(-30deg) rotateY(360deg);
+        /*transform:rotateZ(-30deg) rotateX(360deg);*/
+        /*transform: rotateZ(360deg)*/
+    }
+}
+
+/*clip 裁剪*/
+.clip-con{
+    width: 300px;
+    height:375px;
+    margin: auto;
+    padding-top: 60px;
+    position: relative;
+}
+.shape-box{
+    width: 300px;
+    height: 300px;
+    border: 1px solid #fff;
+    transform:rotate(45deg);
+    -ms-transform:rotate(45deg);
+}
+.line{
+    position: absolute;
+    transform:rotate(67.5deg);
+    -ms-transform:rotate(67.5deg);
+    top: -44px;
+    left: 152px;
+
+}
+.line div{
+    width: 358px;
+    height: 150px;
+    position: absolute;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+}
+.l2{
+    transform:rotate(90deg);
+    -ms-transform:rotate(90deg);
+}
+.l3{
+    transform:rotate(45deg);
+    -ms-transform:rotate(45deg);
+
+}
+.l4{
+    transform:rotate(-45deg);
+    -ms-transform:rotate(-45deg);
+}
+.clip{
+    -webkit-clip-path:  polygon(49px 198px, 63px 164px, 208px 19px, 242px 4px, 276px 18px, 423px 164px, 437px 198px, 426px 225px, 271px 380px, 244px 393px, 214px 381px, 60px 228px);
+    clip-path:  polygon(49px 198px, 63px 164px, 208px 19px, 242px 4px, 276px 18px, 423px 164px, 437px 198px, 426px 225px, 271px 380px, 244px 393px, 214px 381px, 60px 228px);
+    position: relative;
+    top: -347px;
+    left: -91px;
+    z-index: -1;
+    height: 400px;
+}
+
+/*单选按钮*/
+.input-box{
+    width:1000px;
+    overflow:hidden;
+    margin:0 auto;
+}
+.radio{
+    width: 500px;
+    margin:3% auto;
+    float: left;
+    text-align: center;
+}
+.radio input[ type="radio"]{
+    display: none;
+}
+.radio label{
+ width: 30px;
+ height: 30px;
+ background-color: #fff;
+ display: inline-block;
+ border-radius: 100%;
+ position: relative;
+ cursor:pointer;
+}
+.radio label:after{
+    content: "";
+    width: 24px;
+    height: 24px;
+    background-color: #333;
+    border-radius: 50%;
+    position: absolute;
+    top:3px;
+    left: 3px;
+    transform:scale(0);
+    -ms-transform:scale(0);
+    transition:transform 1s ease-out;
+}
+.radio input[ type="radio"]:checked +label{
+    background-color:#eee ;
+    transition: background-color .2s ease-in;
+}
+.radio input[ type="radio"]:checked +label:after{
+    transform:scale(1);
+    -ms-transform:scale(1);
+    transition:transform 1s ease-in;
+}
+
+/*-------------------------------------*/
+.radio2{
+    width: 500px;
+    margin:3% auto;
+    float: left;
+    text-align: center;
+}
+.radio2 input[ type="radio"]{
+    display: none;
+}
+.radio2 label{
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    display: inline-block;
+    border-radius: 100%;
+    position: relative;
+    cursor:pointer;
+    overflow: hidden;
+}
+.radio2 label:after{
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-color: #333;
+    border-radius: 50%;
+    position: absolute;
+    top:5px;
+    left: 5px;
+    transform-origin:-4px 50%;
+    transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    transition:transform 1s ease-out;
+}
+.radio2 input[ type="radio"]:checked +label{
+    background-color:#eee ;
+}
+.radio2 input[ type="radio"]:checked +label:after{
+    transform:rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transition:transform 1s ease-in;
+}
+
+/*loading动画*/
+.loading-box{
+    width: 100%;
+    padding: 3%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.loading{
+    width: 30%;
+    height: 200px;
+    float:left;
+    margin-right: 3%;
+    margin-bottom: 3%;
+    border: 1px solid #ffffff;
+    box-sizing: border-box;
+    display: flex;
+    align-items:center;
+    -ms-align-items:center;
+    justify-content:center;
+    -ms-justify-content:center;
+}
+.loading-1 i{
+    width: 14px;
+    height: 14px;
+    display: block;
+    border-radius:50%;
+    background: linear-gradient(transparent 0%,transparent 70%,#333 30%,#333 100%);
+    animation:  loading-1 1.5s linear infinite;
+    -webkit-animation:  loading-1 1.5s linear infinite;
+}
+@keyframes loading-1{
+    0%{
+        transform:rotate(0deg);
+        -ms-transform:rotate(0deg);
+    }
+    50%{
+       transform:rotate(180deg);
+        -ms-transform:rotate(180deg);
+    }
+   100%{
+       transform:rotate(360deg);
+       -ms-transform:rotate(360deg);
+   }
+}
+.loading-2 i{
+    display: inline-block;
+    width: 2px;
+    height: 15px;
+    background-color: #333;
+}
+.loading-2 i:nth-child(1){
+    animation:  loading-2 1s linear 0s infinite;
+    -webkit-animation:  loading-2 1s linear 0s infinite;
+}
+.loading-2 i:nth-child(2){
+    animation:  loading-2 1s linear 0.10s infinite;
+    -webkit-animation:  loading-2 1s linear 0.10s infinite;
+}
+.loading-2 i:nth-child(3){
+    animation:  loading-2 1s linear 0.15s infinite;
+    -webkit-animation:  loading-2 1s linear 0.15s infinite;
+}
+.loading-2 i:nth-child(4){
+    animation:  loading-2 1s linear 0.2s infinite;
+    -webkit-animation:  loading-2 1s linear 0.2s infinite;
+}
+.loading-2 i:nth-child(5){
+    animation:  loading-2 1s linear 0.25s infinite;
+    -webkit-animation:  loading-2 1s linear 0.25s infinite;
+}
+@keyframes loading-2{
+    50%{
+        transform:scaleY(.4);
+        -ms-transform:scaleY(.4);
+    }
+    100%{
+        transform:scaleY(1);
+        -ms-transform:scaleY(1);
+    }
+}
+.loading-3{
+    position: relative;
+}
+.loading-3 i{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius:50%;
+    background-color: #333;
+    position: absolute;
+}
+.loading-3 i:nth-child(1){
+    top:25px;
+    left: 0;
+    animation:  loading-3 1.5s linear 0s infinite;
+    -webkit-animation:  loading-3 1.5s linear 0s infinite;
+}
+.loading-3 i:nth-child(2){
+    top:17px;
+    left:17px;
+    animation:  loading-3 1.5s linear 0.16s infinite;
+    -webkit-animation:  loading-3 1.5s linear 0.16s infinite;
+}
+.loading-3 i:nth-child(3){
+    top:0;
+    left:25px;
+    animation:  loading-3 1.5s linear 0.24s infinite;
+    -webkit-animation:  loading-3 1.5s linear 0.24s infinite;
+}
+.loading-3 i:nth-child(4){
+    top:-17px;
+    left:17px;
+    animation:  loading-3 1.5s linear 0.32s infinite;
+    -webkit-animation:  loading-3 1.5s linear 0.32s infinite;
+}
+.loading-3 i:nth-child(5){
+    top:-25px;
+    left:0;
+    animation:  loading-3 1.5s linear 0.4s infinite;
+    -webkit-animation:  loading-3 1.5s linear 0.4s infinite;
+}
+.loading-3 i:nth-child(6){
+    top:-17px;
+    left:-17px;
+    animation:  loading-3 1.5s linear 0.48s infinite;
+    -webkit-animation:  loading-3 1.5s linear 0.48s infinite;
+}
+.loading-3 i:nth-child(7){
+    top:0;
+    left:-25px;
+    animation:  loading-3 1.5s linear 0.56s infinite;
+    -webkit-animation:  loading-3 1.5s linear 0.56s infinite;
+}
+.loading-3 i:nth-child(8){
+    top:17px;
+    left:-17px;
+    animation:  loading-3 1.5s linear 0.64s infinite;
+    -webkit-animation:  loading-3 1.5s linear 0.64s infinite;
+}
+@keyframes loading-3{
+    50%{
+        transform:scale(.4);
+        -ms-transform:scale(.4);
+        background-color: #cccccc;
+    }
+    100%{
+        background-color: #333;
+    }
+}
+.loading-4{
+    width: 60px;
+    height: 60px;
+    position: relative;
+}
+.loading-4 i{
+    display: block;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #333;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+@keyframes loading-4{
+    0%{
+        transform:scale(0);
+        -ms-transform:scale(0);
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        transform:scale(1);
+        -ms-transform:scale(1);
+        opacity: 0;
+    }
+}
+.loading-4 i:nth-child(1){
+    animation:  loading-4 1.5s linear 0s infinite;
+    -webkit-animation:  loading-4 1.5s linear 0s infinite;
+}
+.loading-4 i:nth-child(2){
+    animation:  loading-4 1.5s linear 0.2s infinite;
+    -webkit-animation:  loading-4 1.5s linear 0.2s infinite;
+}
+.loading-4 i:nth-child(3){
+    animation:  loading-4 1.5s linear 0.4s infinite;
+    -webkit-animation:  loading-4 1.5s linear 0.4s infinite;
+}
+.loading-5{
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+.loading-5 i{
+    display: block;
+    border-radius: 50%;
+    border:2px solid #333;
+    border-color: transparent #333;
+    position: absolute;
+}
+.loading-5 i:first-child{
+    width: 35px;
+    height: 35px;
+    top: 0;
+    left: 0;
+    animation:  loading-5 1s linear 0s infinite;
+    -webkit-animation:  loading-5 1s linear 0s infinite;
+}
+.loading-5 i:last-child{
+    width: 15px;
+    height: 15px;
+    top: 10px;
+    left: 10px;
+    animation:  loading-5 1s linear 0s infinite reverse;
+    -webkit-animation:  loading-5 1s linear 0s infinite reverse;
+}
+@keyframes loading-5{
+    0%{
+        transform:rotate(0) scale(1);
+        -ms-transform:rotate(0) scale(1);
+    }
+    50%{
+        transform:rotate(180deg) scale(.6);
+        -ms-transform:rotate(180deg) scale(.6);
+    }
+    100%{
+        transform:rotate(360deg) scale(1);
+        -ms-transform:rotate(360deg) scale(1);
+    }
+}
+
+

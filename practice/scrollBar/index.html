@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>scrollBar</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <script src="../../js/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <link href="../../stylesheets/common/reset.css" rel="stylesheet" />
+    <link href="../../stylesheets/common/base.css" rel="stylesheet" />
+    <link href="../../stylesheets/scroll.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/TabSwitchScroll.css" />
+    <script src="../../seajs/2.2.3/sea.js"></script>
+    <script src="../../js/web-config.js"></script>
+  </head>
+  <body>
+    <div class="scroll-warp" id="scroll-warp">
+      <div class="scroll-con" id="scroll-con">
+        <p> JavaScript一种直译式脚本语言，是一种动态类型、弱类型、基于原型的语言，内置支持类型。它的解释器被称为JavaScript引擎，为浏览器的一部分，广泛用于客户端的脚本语言，最早是在HTML（标准通用标记语言下的一个应用）网页上使用，用来给HTML网页增加动态功能。</p>
+        <p>在1995年时，由Netscape公司的Brendan Eich，在网景导航者浏览器上首次设计实现而成。因为Netscape与Sun合作，Netscape管理层希望它外观看起来像Java，因此取名为JavaScript。但实际上它的语法风格与Self及Scheme较为接近。[1] </p>
+        <p>为了取得技术优势，微软推出了JScript，CEnvi推出ScriptEase，与JavaScript同样可在浏览器上运行。为了统一规格，因为JavaScript兼容于ECMA标准，因此也称为ECMAScript。</p>
+        <p> JavaScript一种直译式脚本语言，是一种动态类型、弱类型、基于原型的语言，内置支持类型。它的解释器被称为JavaScript引擎，为浏览器的一部分，广泛用于客户端的脚本语言，最早是在HTML（标准通用标记语言下的一个应用）网页上使用，用来给HTML网页增加动态功能。</p>
+        <p>在1995年时，由Netscape公司的Brendan Eich，在网景导航者浏览器上首次设计实现而成。因为Netscape与Sun合作，Netscape管理层希望它外观看起来像Java，因此取名为JavaScript。但实际上它的语法风格与Self及Scheme较为接近。[1] </p>
+        <p>为了取得技术优势，微软推出了JScript，CEnvi推出ScriptEase，与JavaScript同样可在浏览器上运行。为了统一规格，因为JavaScript兼容于ECMA标准，因此也称为ECMAScript。</p>
+      </div>
+    </div>
+    <p class="title">滚动条的扩展，通过滚动条切换内容</p>
+     <div class="switch-scroll clearfix">
+            <ul class="clearfix">
+                <li class="on">html</li>
+                <li>css</li>
+                <li>javascript</li>
+            </ul>
+            <div class="scroll-warp1" id="scroll-warp1">
+                <div class="scroll-con1" id="scroll-con1">
+                    <h3 class="anchor">HTML</h3>
+                    <p>网页的本质就是超级文本标记语言，通过结合使用其他的Web技术（如：脚本语言、公共网关接口、组件等），可以创造出功能强大的网页。因而，超级文本标记语言是万维网（Web）编程的基础，也就是说万维网是建立在超文本基础之上的。超级文本标记语言之所以称为超文本标记语言，是因为文本中包含了所谓“超级链接”点。</p>
+                    <h3 class="anchor">CSS</h3>
+                    <p>层叠样式表(英文全称：Cascading Style Sheets)是一种用来表现HTML（标准通用标记语言的一个应用）或XML（标准通用标记语言的一个子集）等文件样式的计算机语言。CSS目前最新版本为CSS3，是能够真正做到网页表现与内容分离的一种样式设计语言。相对于传统HTML的表现而言，CSS能够对网页中的对象的位置排版进行像素级的精确控制，支持几乎所有的字体字号样式，拥有对网页对象和模型样式编辑的能力，并能够进行初步交互设计，是目前基于文本展示最优秀的表现设计语言。CSS能够根据不同使用者的理解能力，简化或者优化写法，针对各类人群，有较强的易读性。</p>
+                    <h3 class="anchor">JAVASCRIPT</h3>
+                    <p>JavaScript一种直译式脚本语言，是一种动态类型、弱类型、基于原型的语言，内置支持类型。它的解释器被称为JavaScript引擎，为浏览器的一部分，广泛用于客户端的脚本语言，最早是在HTML（标准通用标记语言下的一个应用）网页上使用，用来给HTML网页增加动态功能。</p>
+                </div>
+            </div>
+        </div>
+    <script type="text/javascript">
+        seajs.use('scroll',function(JqSroll){
+          var scroll=new JqSroll();
+        });
+        seajs.use('TabSwitchScroll',function(JqSroll){
+          var slide=new JqSroll({
+            container:'scroll-warp1',
+            scrollCon:'scroll-con1'
+        });
+        });
+    </script>
+  </body>
+</html>

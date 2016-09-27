@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <meta content="yes" name="apple-touch-fullscreen" /> 
+        <meta content="telephone=no,email=no" name="format-detection" />       
+        <script type="text/javascript" src="http://www.w3school.com.cn/jquery/jquery-1.11.1.min.js"></script>
+        <style type="text/css" media="screen">
+            @media screen and (max-width: 570px){
+                .timer-product li span.seckill-tip{
+                    width:30px !important;
+                    height:30px !important;
+                    font-size: 12px !important;
+                    line-height: 30px !important;
+                }
+                .search-box{
+                    width:50% !important;
+                    text-align: left;
+                    margin-left: 28px;
+                }
+                .search-input{
+                   width: 73% !important;
+                }
+            }
+            *{
+                margin:0;
+                padding:0;
+                font-family: '黑体';
+                text-decoration: none;
+            }
+            a{
+                color:#777777;
+            }
+            .wrapper{
+                width:98%;
+                height:auto;
+                min-width: 320px;
+                max-width: 600px;
+                margin:0 auto;
+            }
+            .clearfloat:after{
+                content: '';
+                display:table;
+                clear:both;
+            }
+            .clearfloat{
+                zoom:1;
+            }
+            .right{
+                float:right;
+            }
+            .left{
+                float:left;;
+            }
+            .top{
+                width:98%;
+                min-width: 320px;
+                max-width: 600px;
+                height: 40px;
+                line-height: 40px;
+                background:#ff0000;
+                text-align: center;
+                position:fixed;
+                top: 0;
+                z-index: 10;
+            }
+            .wrapper header span{
+                width:60px;
+                height:23px;
+                display: inline-block;
+                position:absolute;
+                top: 10px;
+                left: 25px;
+            }
+            .logo-icon{
+                display:block;
+                background: url(../img/logo.png) no-repeat;
+            }
+            .search-box{
+                display:inline-block;
+                background:#ffffff;
+                border-radius: 20px;
+                width:60%;
+                height:30px;
+                padding-left: 10px;    
+                vertical-align: top;
+                margin-top: 4px;
+            }
+            .top form i{
+                width:18px;
+                height:22px;
+                display: inline-block;
+                background-size: 200px 200px;
+            }
+            .search-icon{
+               background: url(http://st.360buyimg.com/m/images/index/jd-sprites.png?v=13) -60px -109px no-repeat; 
+            }
+            .search-input{
+                border:none;
+                height:25px;
+                width:88%;
+                vertical-align: text-bottom;
+                outline: none;
+                background:none;
+            }
+            .login{
+                text-decoration: none;
+                color: #ececec;
+                position:absolute;
+                right: 25px;
+
+            }
+            .banner{
+                width:100%;
+                height:100%;
+                margin-top: 30px;
+                position:relative;
+                overflow:hidden;
+
+            }
+            .banner ul{
+                position:relative;
+            }
+            .banner ul li:first-child{
+                z-index: 1;
+            }
+            .banner ul li{
+                width:100%;
+                height:100%;
+                float: left;
+                list-style-type: none;
+            }
+            .focus-number{
+                width:100%;
+                /*height:100%;*/
+                text-align: center;
+                position:absolute;
+                bottom:10px;
+                z-index: 4;
+            }
+            .focus-number span{
+                display:inline-block;
+                cursor: pointer;
+                width:10px;
+                height:10px;
+                background:#cccccc;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
+            .focus-number span.on{
+                background:green;
+            }
+            .arrow b{
+                position:absolute;
+                top: 50%;
+            }
+            .arrow .arrow-l{
+                left:0;
+            }
+            .arrow .arrow-r{
+                right:0;
+            }
+            .wrapper .nav-box{
+                border-bottom:1px solid #ececec;
+            }
+            .wrapper .nav-box a{
+                /*width:238px;*/
+                width:25%;
+                height:auto;
+                /*display:inline-block;*/
+                display:block;
+                float:left;
+                text-decoration: none;
+                font-size: 12px;
+                color:#888888;
+                text-align: center;
+                margin-bottom: 10px;
+            }
+            .wrapper .nav-box i{
+                display:block;
+                width:64px;
+                height:50px;
+                background:url(../img/icno.png) no-repeat;
+                background-size: 248px 175px;
+                margin: 5px auto;
+            }
+            .wrapper .nav-box i.classify{
+                background-position: -123px 0px;
+            }
+            .wrapper .nav-box i.logistics{
+                background-position: -58px 0px;
+            }
+            .wrapper .nav-box i.shopping{
+                background-position: 9px 0px;
+            }
+            .wrapper .nav-box i.my{
+                background-position: -192px 0px;
+            }
+            .wrapper .nav-box i.calls{
+                background-position: -123px -73px;
+            }
+            .wrapper .nav-box i.voucher{
+                background-position: -58px -73px;
+            }
+            .wrapper .nav-box i.market{
+                background-position: 9px -73px;
+            }
+            .wrapper .nav-box i.attention{
+                background-position: -192px -73px;
+            }
+            .flash-sale{
+                margin-top: 15px;
+            }
+            .flash-sale .title{
+                overflow: hidden;
+            }
+            .flash-sale i.clock-icno{
+                display:inline-block;
+                width: 18px;
+                height: 22px;
+                margin-left: 10px;
+                background:url("http://st.360buyimg.com/m/images/index/jd-sprites.png") -84px -109px no-repeat;
+                background-size: 200px 200px;
+                float:left;
+            }
+            .flash-sale h4{
+                display:inline-block;
+                color:#ca1327;
+                margin:4px 6px;
+                margin: 4px;
+                float:left;
+            }
+            .timer{
+                display: inline-block;
+                float:left;
+                margin: 4px;
+            }
+            .timer span{
+                background:#666666;
+                padding:0 2px 0 0;
+                color:#ffffff;
+            }
+            .timer span.bg-none{
+                background:none;
+                color:#000000;
+            }
+            .timer span.pl2{
+                padding-left: 2px;
+            }
+            .more{
+                font-size: 14px;
+                margin-right: 15px;
+                margin-top: 4px;
+            }
+            .timer-product li{
+                width: 33.33%;
+                height:auto;
+                display: table-cell;
+                position: relative;
+                margin: 0px 15px;
+            }
+            .timer-product{
+                display:table;
+                width:100%;
+                height:100%;
+                margin-top: 20px;
+            }
+            .timer-product li span.seckill-tip{
+                width:50px;
+                height:50px;
+                border-radius: 50%;
+                display:inline-block;
+                font-size: 16px;
+                background:#fdb60a;
+                text-align: center;
+                line-height: 50px;
+                color:#ffffff;
+                position:absolute;
+                bottom: 45px;
+                right: 6px;
+            }
+            .timer-product li p{
+                text-align: center;
+                font-size:16px;
+                margin-top: 10px;
+            }
+            .timer-product li p span.red{
+                color:red;
+            }
+            .timer-product li p span.del{
+                text-decoration:line-through;
+            }
+            .three-column a{
+                display:inline-block;
+                width:33.33%;
+                height:auto;
+                letter-spacing:0;
+                margin-right: -6px;
+            }
+            .two-column a{
+                display:inline-block;
+                width:50%;
+                height:auto;
+                letter-spacing:0;
+                margin-right: -4px;
+            }
+            .shows h3{
+                font-weight: normal;
+                color:red;
+                margin:10px;
+                font-size: 16px;
+            }
+            .shows .shows-list li{
+                display:inline-block;
+                width:50%;
+                height:auto;
+                margin-right: -8px;
+                vertical-align: top;
+            }
+            .shows .shows-list li.wi40{
+                width:40%;
+            }
+            .shows .shows-list li.wi60{
+                width:60%;
+            }
+
+            .footer{
+                margin: 30px 0;
+            }
+            .footer ul li{
+                width:100%;
+                border-top: 1px solid #cccccc;
+                padding:20px 0;
+                list-style-type: none;
+                text-align: center;
+            }
+            .footer ul li a{
+                font-size: 12px;
+                color:#777777;
+                display:inline-block;
+            }
+            .footer ul li:first-child a{
+                width:60px;
+                height:auto;
+                border-right:1px solid #cccccc;
+                text-align: center;
+            } 
+            .footer ul li:last-child a{
+                width:100px;
+                height:auto;
+                text-align: center;
+                position:relative;
+            } 
+            .footer ul li:first-child a:last-child{
+                border:none;
+            }
+            .footer ul li:last-child{
+                border-bottom: 1px solid #cccccc;
+            }
+            .footer ul li:last-child a::before{
+                content:' ';
+                display:block;
+                height: 38px;
+                width: 35px;
+                margin: 0 auto;
+                background: url(http://st.360buyimg.com/m/images/index/jd-sprites.png?v=12) no-repeat;
+                background-size: 200px 200px;
+            }
+            .footer ul li:last-child a:first-child::after{
+                content:' ';
+                display:inline-block;
+                height: 10px;
+                width: 10px;
+                background: url(http://st.360buyimg.com/m/images/index/jd-sprites.png?v=12) no-repeat;
+                background-size: 200px 200px;
+                background-position: -150px 0;
+                position:absolute;
+                top: 4px;
+                right: 30px;
+            }
+            .footer ul li:last-child a:first-child::before{
+                background-position: -119px -69px;
+            }
+            .footer ul li:last-child a:last-child::before{
+                background-position: -79px -69px;
+            }
+            .footer ul li:last-child a:nth-child(2)::before{
+                background-position: -39px -69px;
+            }
+            .ta-center{
+                width:100%;
+                height:100%;
+                text-align: center;
+                margin-top: 15px;
+                color:#848689;
+                font-size: 12px;
+            }
+            .recommend{
+                margin-top: 10px;
+            }
+            .recommend .recommend-title{
+                margin: 20px 0;
+                font-size: 14px;
+                overflow:hidden;
+            }
+            .recommend .recommend-title a{
+               color:red;
+            }
+            .recommend .recommend-title a::before{
+                background: url(/m/images/index/icon-login.png) no-repeat;
+                background-size: 17px 17px;
+                display: inline-block;
+                width: 17px;
+                height: 17px;
+                float: right;
+                margin-right: 6px;
+            }
+            .recommend ul li{
+                width:48%;
+                height:auto;
+                display:inline-block;
+                margin-right: -8px;
+                vertical-align: top;
+                padding:0 1%;
+
+            }
+            .recommend ul li h4{
+                font-size: 12px;
+                line-height: 18px;
+                color: #333;
+                font-weight: normal;
+                height:39px;
+                margin-bottom: 5px;
+                border-bottom: 1px solid #cccccc;
+                overflow:hidden;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                display: -webkit-box;
+            }
+            .recommend ul li p b{
+                float:left;
+                color:red;
+                font-size: 14px;
+                font-weight: normal;
+            }
+            .recommend ul li p a{
+                float:right;
+                color:#cccccc;
+                font-size: 12px;
+                border:1px solid #888888;
+                padding:5px;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <header class='top'>
+                <span class='logo-icon'></span>
+                <form class="search-box">
+                    <i class='search-icon'></i>
+                    <input type="text" name="search" value="" placeholder="搜索京东商品/店铺"  disabled="disabled" class="search-input">
+                </form>
+                <a href="##" class="login">登录</a>
+            </header>
+            <div class="banner j-banner-01">
+                <ul class="banner-ul clearfloat">
+                    <li><a><img src="http://m.360buyimg.com/mobilecms/s720x350_jfs/t1936/52/2796981219/98539/e785ed4d/56f4f1b1Naf1733eb.jpg" width="100%" alt="" /></a></li>
+                   <!--  <li><a><img src="http://m.360buyimg.com/mobilecms/s720x350_jfs/t2212/160/2955365715/119470/8ab8cb8b/56f50551N92217568.jpg" width="100%" alt="" /></a></li>
+                    <li><a><img src="http://m.360buyimg.com/mobilecms/s720x350_jfs/t1858/25/2219909056/92145/81d34176/56f8fb3eNd1cf5d76.jpg" width="100%" alt="" /></a></li>
+                    <li><a><img src="http://m.360buyimg.com/mobilecms/s720x350_jfs/t2491/227/2162765977/84889/397a8a15/56f39288Ncbb1f989.jpg" width="100%" alt="" /></a></li> -->
+                </ul>
+                <div class="focus-number"></div>
+            </div>
+            <nav class='nav-box clearfloat'>
+                <a href="##"><i class="classify"></i>分类查询</a><a href="##"><i class="logistics"></i>物流查询</a>
+                <a href="##"><i class="shopping"></i>购物车</a>
+
+
+                <a href="##"><i class="my"></i>我的京东</a>
+                <a href="##"><i class="calls"></i>抢2元话费</a>
+                <a href="##"><i class="voucher"></i>领券中心</a>
+                <a href="##"><i class="market"></i>京东超市</a>
+                <a href="##"><i class="attention"></i>我的关注</a>
+            </nav>
+            <div class="flash-sale win98 clearfloat">
+               <div class="title">
+                   <i class='clock-icno'></i> 
+                   <h4>掌上秒杀</h4>
+                   <div class="timer j-timer">
+                       <span class='pl2 hours'>00</span><span class='bg-none'>:</span><span class="minutes">00</span><span class='bg-none'>:</span><span class='pl2 seconds'>00</span>
+                       <!-- <span class='pl2'>0</span><span>0</span><span class='bg-none'>:</span><span class='pl2'>0</span><span>0</span><span class='bg-none'>:</span><span class='pl2'>0</span><span>0</span> -->
+                   </div>
+                   <a href="##" class="right more">更多秒杀 >  </a>
+               </div>
+               <ul class="timer-product">
+                   <li>
+                   <a><img src="http://m.360buyimg.com/mobilecms/s220x220_jfs/t2053/340/1224420061/25606/c3129761/568bb8dfNd10e22cb.jpg!q70.jpg" alt="" / width="100%"></a>
+                   <span class='seckill-tip'>秒首发</span>
+                   <p>
+                   <span class='red'>￥109</span><br><span class='del'>￥119</span>
+                   </p>
+                   </li>
+                   <li>
+                   <a><img src="http://m.360buyimg.com/mobilecms/s220x220_jfs/t2107/170/1739878858/182309/5ca1156b/56d55a0bNa4d74516.jpg!q70.jpg" alt="" / width="100%"></a>
+                   <span class='seckill-tip'>热卖</span>
+                   <p>
+                   <span class='red'>￥49</span><br><span class='del'>￥98</span>
+                   </p>
+                   </li>
+                   <li>
+                   <a><img src="http://m.360buyimg.com/mobilecms/s220x220_jfs/t1873/263/1025190853/112238/9acac429/563c3adbNdf2a308d.jpg!q70.jpg" alt="" / width="100%"></a>
+                   <span class='seckill-tip'>推荐</span>
+                   <p>
+                   <span class='red'>￥1698</span><br><span class='del'>￥1798</span>
+                   </p>
+                   </li>
+               </ul>
+            </div>
+            <div class="floor win98">
+                <div class="three-column">
+                    <a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t2269/95/2875739514/20130/c0d872b3/56fbada5N05d21001.jpg!q70.jpg" alt="" width="100%" /></a>
+                    <a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t2263/110/2211025439/24655/707cbdf8/56a74a5eNd17f2c54.jpg!q70.jpg" alt="" width="100%" /></a>
+                    <a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t2581/38/20702428/19458/47d77982/56fba881N30ed1175.jpg!q70.jpg" alt="" width="100%" /></a>
+                </div>
+                <div class="two-column">
+                    <a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t2371/112/2821537542/22768/bc1b148/56f8a0fdNdfa48a92.jpg!q70.jpg" alt="" width="100%" /></a>
+                    <a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t2077/1/2968659331/26166/d4c48d18/56fbf36dNc8a23cbf.jpg!q70.jpg" alt="" width="100%" /></a>
+                    <a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t2425/317/2989578120/14408/b622f542/56fb6c58N4c08282f.jpg!q70.jpg" alt="" width="100%" /></a>
+                    <a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t2587/122/19053750/22475/cb2ccb12/56fbc6ffN39b665aa.jpg!q70.jpg" alt="" width="100%" /></a>
+                </div> 
+            </div>
+            <div class="banner">
+                <a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t2428/46/2964102835/61955/30beea69/56f8d5e4Ne903c7da.jpg!q70.jpg" alt="" width="100%" /></a>
+            </div>
+            <div class="shows win98">
+                <h3>特色市场</h3>
+                <ul class="shows-list">
+                    <li><a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t2167/181/2906569245/127869/192f91ce/56f3b6fcN6186fe9b.png!q70.jpg" alt="" width="100%" /></a></li>
+                    <li>
+                        <a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t2029/111/2947058076/54153/b9725fe0/56fbaac6N3d545276.png!q70.jpg" alt="" width="100%" /></a>
+                        <a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t2647/39/26764982/30813/d91b444c/56fbef22Nf623eab6.png!q70.jpg" alt="" width="100%" /></a>
+                    </li>
+                    <li><a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t2716/363/23154970/57780/fd0fff00/56fbaae2N49280866.png!q70.jpg" alt="" width="100%" /></a></li>
+                    <li><a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t1927/172/2553713318/41077/52b31182/56dd9fc9N67a9b9f3.png!q70.jpg" alt="" width="100%" /></a></li>
+                </ul>
+            </div>
+            <div class="banner">
+                <a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t1903/207/2203110243/68105/b968fc97/56f4af6dN08bb2d19.jpg!q70.jpg" alt="" width="100%" /></a>
+            </div>
+            <div class="shows win98">
+                <h3>主题街</h3>
+                <ul class="shows-list">
+                    <li><a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t2869/76/22093131/31738/e8eb765b/56fb9f74N6c194d56.jpg!q70.jpg" alt="" width="100%" /></a></li>
+                    <li>
+                        <a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t2737/206/6235391/57958/71052af5/56fa505eNd0a9ab06.jpg!q70.jpg" alt="" width="100%" /></a>
+                        <p class='two-column'>
+                            <a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t2245/59/2253814839/8925/7bd91db/56f8dfa2N38514c72.jpg!q70.jpg" alt="" width="100%" /></a>
+                            <a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t2203/66/2222232030/14518/81c07ade/56fb9c96Nd0ef1894.jpg!q70.jpg" alt="" width="100%" /></a>
+                        </p>
+                    </li>
+                    <li class="two-column">
+                        <a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t2212/226/2937331542/31260/f0fbc3d0/56f4f85bNf92cb0e8.jpg!q70.jpg" alt="" width="100%" /></a>
+                        <a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t2722/96/21648857/10962/c5126c63/56fb9c31N6031d7f2.jpg!q70.jpg" alt="" width="100%" /></a>
+                    </li>
+                    <li class="two-column">
+                        <a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t1894/103/2920596356/27186/f81830d5/56fb6efaN652f306f.png!q70.jpg" alt="" width="100%" /></a>
+                        <a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t2137/16/3018445555/18427/c984ed5f/56fba2e6N6b411500.jpg!q70.jpg" alt="" width="100%" /></a>
+                    </li>
+                    <li class="two-column">
+                        <a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t2392/3/2241877022/9706/272be0c3/56fb9fadN02385bca.jpg!q70.jpg" alt="" width="100%" /></a>
+                        <a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t2218/117/2937449544/21807/55438d77/56f4a971N368b6fbb.jpg!q70.jpg" alt="" width="100%" /></a>
+                    </li>
+                    <li class="two-column">
+                        <a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t2089/186/2705300629/12182/73bb923f/56e7c798N7b1370db.jpg!q70.jpg" alt="" width="100%" /></a>
+                        <a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t2335/94/2014153342/16357/b6acc4f5/56e7e215Ne5d4982e.jpg!q70.jpg" alt="" width="100%" /></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="banner">
+                <a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t2221/293/2835872915/47023/9054bb15/56f518acNf282b215.jpg!q70.jpg" alt="" width="100%" /></a>
+            </div>
+            <div class="shows win98">
+                <h3>品牌推荐</h3>
+                <ul class="shows-list">
+                    <li class='wi40'><a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t2104/221/2101317657/31151/8c7fb2b1/56f24ec6N459cf5d4.jpg!q70.jpg" alt="" width="100%" /></a></li>
+                    <li class="wi60 two-column">
+                        <a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t1909/60/1938003776/26083/2e54e20b/56e624d1N99cda5d6.jpg!q70.jpg" alt="" width="100%" /></a>
+                        <a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t2035/325/2832497687/15131/4162dcfa/56fb3710N4ab59a20.jpg!q70.jpg" alt="" width="100%" /></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="recommend win98 clearfloat">
+                <a href="##"><img src="http://m.360buyimg.com/mobilecms/jfs/t2719/318/25030862/90126/e16db1d9/56fbd3b1N4a21587b.jpg!q70.jpg" alt="" width="100%" /></a>
+                <div class="recommend-title">
+                    <span class='left'>猜你喜欢</span>
+                    <a href="##" class="right">登录后更懂你 ></a>
+                </div>
+                <ul>
+                    <li>
+                        <a href="##"><img src="http://m.360buyimg.com/mobilecms/s276x276_jfs/t592/193/1502021056/95333/6fdc9793/54fd0a21Nc28abcf7.jpg" alt="" width="100%" /></a>
+                        <h4>金龙鱼 玉米油4L（非转基因压榨）</h4>
+                        <p>
+                            <b>￥<span>65.90</span></b>
+                            <a href="##">看相似</a>
+                        </p>
+
+                    </li>
+                    <li>
+                        <a href="##"><img src="http://m.360buyimg.com/mobilecms/s276x276_jfs/t2116/342/2365967547/932880/271bf925/56cfe8f6N61847e51.jpg" alt="" width="100%" /></a>
+                        <h4>闪购 丽家宫廷奥比松丙纶欧式客厅卧室沙发进门垫地毯 送门垫 148R 120*170cm</h4>
+                        <p>
+                            <b>￥<span>99.00</span></b>
+                            <a href="##">看相似</a>
+                        </p>
+                    </li>
+                    <li>
+                        <a href="##"><img src="http://m.360buyimg.com/mobilecms/s276x276_jfs/t2446/210/2004193667/580006/d021f153/56ea0a0dN25e83bed.jpg" alt="" width="100%" /></a>
+                        <h4>子婳2016修身小吊带背心女夏外穿紧身百搭棉短款工字女装打底衫韩版 工字款黑色</h4>
+                        <p>
+                            <b>￥<span>39.00</span></b>
+                            <a href="##">看相似</a>
+                        </p>
+                    </li>
+                    <li>
+                        <a href="##"><img src="http://m.360buyimg.com/mobilecms/s276x276_jfs/t2131/351/1628720343/189173/564afb9f/566e8321Nac00a385.jpg" alt="" width="100%" /></a>
+                        <h4>稻草人（MEXICAN）精品男包 欧美时尚头层牛皮单肩斜挎包小方包 男士休闲单肩包 MXC50136M-03 黑色</h4>
+                        <p>
+                            <b>￥<span>199.00</span></b>
+                            <a href="##">看相似</a>
+                        </p>
+                    </li>
+                    <li>
+                        <a href="##"><img src="http://m.360buyimg.com/mobilecms/s276x276_jfs/t2038/209/1698527419/182679/8ef459ff/56751489N6c2b438d.jpg" alt="" width="100%" /></a>
+                        <h4>火翼HUOYI 验钞灯紫光手电筒激光笔手电筒颜色随机BZ-5 颜色随机</h4>
+                        <p>
+                            <b>￥<span>19.00</span></b>
+                            <a href="##">看相似</a>
+                        </p>
+                    </li>
+                    <li>
+                        <a href="##"><img src="http://m.360buyimg.com/mobilecms/s276x276_jfs/t640/130/929060782/95746/b658ac50/549bce4fN2776c8ea.jpg" alt="" width="100%" /></a>
+                        <h4>高露洁（Colgate） 360°全面口腔健康 牙膏 180g (备长炭深洁)</h4>
+                        <p>
+                            <b>￥<span>16.90</span></b>
+                            <a href="##">看相似</a>
+                        </p>
+                    </li>
+                    <li>
+                        <a href="##"><img src="http://m.360buyimg.com/mobilecms/s276x276_jfs/t694/306/1146905548/307859/5c371fc6/54b672aaNa6b7a828.jpg" alt="" width="100%" /></a>
+                        <h4>货到付款杨大爷经典麻辣香肠川味腊肠500g烟熏肉腊肠四川特产腊肉腊味</h4>
+                        <p>
+                            <b>￥<span>45.00</span></b>
+                            <a href="##">看相似</a>
+                        </p>
+                    </li>
+                    <li>
+                        <a href="##"><img src="http://m.360buyimg.com/mobilecms/s276x276_g7/M03/0E/0B/rBEHZlCjT7IIAAAAAAElMKsRGqoAACzYABPxb4AASVI182.jpg" alt="" width="100%" /></a>
+                        <h4>苏泊尔304不锈钢大容量保温桶学生儿童保温饭盒2.5L保温提锅KF25A1</h4>
+                        <p>
+                            <b>￥<span>139.00</span></b>
+                            <a href="##">看相似</a>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <footer class='footer'>
+                <ul>
+                    <li>
+                        <a href="##">登录</a>
+                        <a href="##">注册</a>
+                        <a href="##">反馈</a>
+                        <a href="#top">回到顶部</a>
+                    </li>
+                    <li>
+                        <a href="##">客户端</a>
+                        <a href="##">触屏版</a>
+                        <a href="##">电脑版</a>
+                    </li>
+                </ul>
+                <p class="ta-center">Copyright © 2004-2016 京东JD.com 版权所有</p>
+            </footer>
+        </div>
+
+        <script>
+            function TimerCount(){
+              this.container=$(".j-timer");
+              this.totalMinutes=500;
+              this.asetTime();
+            }
+
+    TimerCount.prototype.asetTime=function(){
+      s =this;
+      setInterval(function(){
+          var timeIndex=s.totalMinutes;
+          var hour=parseInt(timeIndex / 3600);//计算时
+          var minutes=parseInt((timeIndex % 3600) /60);
+          var seconds=parseInt(timeIndex % 60);
+          hour = hour < 10 ? "0" + hour : hour; //当是个位数的时候
+          minutes = minutes < 10 ? "0" + minutes : minutes;
+          seconds = seconds < 10 ? "0" + seconds : seconds;
+
+          s.container.find('.hours').html(hour);
+          s.container.find('.minutes').html(minutes);
+          s.container.find('.seconds').html(seconds);
+          s.totalMinutes--;
+      },1000);
+    }
+
+    //倒计时
+    new TimerCount();
+
+    var mobileTouch=function(options){
+       var args={
+        container : options.container || ".j-banner",                    //banner滑动的父元素
+        showNumber : options.showNumber || false,                        //焦点图的分页小图标
+        autoPlay : options.autoPlay || false,                                     //自动轮播
+        slideArrow : options.slideArrow || false,                        //箭头是否显示
+        dotClick : options.dotClick || false,                            //圆点点击事件
+        delayTime: options.delayTime || 500,                                    //效果持续时间
+        interTime:  options.interTime || 3000                                   //自动轮播运行的间隔 
+      }
+
+
+      var $banner_ul= $(args.container).find("ul").eq(0);
+      var $focusIcon=$('.focus-number');
+      var container=$(args.container);
+      addBannerImg();
+      var imgChild=$banner_ul.find('li');
+      var imgLen=$(imgChild).length;
+      var liWidth=$(imgChild).find('img').outerWidth(true);
+      var imgH=$(imgChild).find('img').height();
+      var ratio=parseFloat(350/720);//图片的高宽比
+      // var ratio=0.8;
+      var index=0;
+      var autoPlay=args.autoPlay;
+      var direction=1;
+      var auto=null;
+      var startX,endX,X;
+      var interTime=args.interTime;
+      var delayTime=args.delayTime;
+      var showNumber=args.showNumber;
+      var slideArrow=args.slideArrow;
+      var dotClick=args.dotClick;
+      var auto;
+
+      function changCss(width,len){
+         $banner_ul.css({
+            width: width * len + 'px',
+            height: width * ratio+ 'px'
+          });
+         $(imgChild).css({
+            width: width + 'px',
+            height: width * ratio+ 'px'
+         });
+         
+      }
+
+      function move(index,width,x){
+        if((index * width-x) >= 0){
+          $banner_ul.css({'left': -(x+index * width)+'px'});//随着鼠标移动
+        }
+        else{
+          $banner_ul.css({'left': -(x-index * width)+'px'});//随着鼠标移动
+        }
+      }
+
+      function initialize(){
+        changCss(liWidth,imgLen);
+        resize();
+      }
+
+      function resize(){
+         $(window).resize(function(event) {
+            var win=$(window).width();
+            if(win >= 320 && win <= 805){
+              changCss(win,imgLen);
+              liWidth=$(imgChild).find('img').outerWidth(true);
+            }
+         });
+      }
+
+    function addBannerImg(){
+      var imgSrc=['http://m.360buyimg.com/mobilecms/s720x350_jfs/t2212/160/2955365715/119470/8ab8cb8b/56f50551N92217568.jpg','http://m.360buyimg.com/mobilecms/s720x350_jfs/t1858/25/2219909056/92145/81d34176/56f8fb3eNd1cf5d76.jpg','http://m.360buyimg.com/mobilecms/s720x350_jfs/t2491/227/2162765977/84889/397a8a15/56f39288Ncbb1f989.jpg']
+      // console.log(imgSrc.length)
+      for(i=0;i<imgSrc.length;i++){
+        container.find('ul').append('<li><a><img src='+imgSrc[i]+' width="100%" alt="" /></a></li>');
+      }
+      $banner_ul.append($banner_ul.find('li').first().clone(true));
+    }
+
+      document.onload=initialize();
+
+      function getFocusIcon(op){
+        for(i=0;i<imgLen-1;i++){
+          op.append('<span></span>');
+        }
+        op.find('span').first().addClass('on');
+      }
+
+      function slideMo(){
+        console.log(liWidth)
+        if(index==imgLen){
+          $banner_ul.css({left:'0px'});
+          index=1;
+        }else if (index==-1){
+          $banner_ul.css({left:- (imgLen-1) * liWidth + 'px'});
+          index=imgLen-2;
+        }
+        $banner_ul.stop().animate({left: - index * liWidth + 'px'},delayTime);
+        if(index==imgLen-1){
+          $focusIcon.find('span').first().addClass('on').siblings().removeClass('on');
+        }else{
+          $focusIcon.find('span').eq(index).addClass('on').siblings().removeClass('on');
+        }
+      }
+
+      function focusDotClick(){
+        $focusIcon.find('span').on('mousedown',function(){
+          clearInterval(auto);
+          index=$(this).index();
+          slideMo();
+        });
+        $focusIcon.find('span').on('mouseup',function(){
+          autoPalyMo();
+        });
+      }
+
+    function autoPalyMo(){
+      if(autoPlay==true){
+        // console.log(autoPlay)
+        auto=setInterval(function(){//计时器，自动轮番
+        var i= index++;
+        slideMo();
+        },interTime);
+      }
+    }
+
+      function slideArrowMo(){
+           container.append('<div class="arrow"></div>');
+           $('.arrow').append('<b class="arrow-l"> < </b>');
+           $('.arrow').append('<b class="arrow-r"> > </b>');
+           $('.arrow').find('b').first().on('mousedown',function(){
+            clearInterval(auto);
+            index--;
+            slideMo();
+          });
+           $('.arrow').find('b').last().on('mousedown',function(){
+            clearInterval(auto);
+            index++;
+            slideMo();
+          });
+          $('.arrow').find('b').on('mouseup',function(){
+             autoPalyMo();
+          });
+      }
+
+      if(showNumber==true){
+        
+        getFocusIcon($focusIcon);
+      }
+
+      //自动轮番
+      if(autoPlay==true){
+        // console.log(autoPlay)
+        auto=setInterval(function(){//计时器，自动轮番
+        var i= index++;
+        slideMo();
+        },interTime);
+      }
+
+      if(dotClick==true){
+        focusDotClick();
+      }
+
+      if(slideArrow==true){
+        slideArrowMo();
+      }
+
+
+      //touchstart事件
+        function touchSatrtFunc(evt) {
+          try {
+              clearInterval(auto);//清除自动轮播
+              evt.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
+              var touch = evt.targetTouches[0]; //获取第一个触点
+              var x = Number(touch.pageX); //页面触点开始的X坐标
+              //记录触点初始位置
+              startX = x;
+          } catch (e) {
+              alert('touchSatrtFunc：' + e.message);
+          }
+        }
+        //touchmove事件，这个事件无法获取坐标
+        function touchMoveFunc(evt) {
+          evt.preventDefault(); 
+            try {
+              var touch = evt.targetTouches[0]; //获取第一个触点
+              endX = Number(touch.pageX); //页面触点结束的X坐标
+              var windowWidth=$(window).width();
+              X=startX - endX;
+              //判断滑动方向
+              if (endX - startX > 10) {//从左到右，即右按钮
+                if(index==0){
+                    $banner_ul.css({left:-(imgLen-1) * windowWidth + 'px'});
+                    index=(imgLen-1);
+                }else{
+                  move(index,windowWidth,X);
+                }
+                  direction=0;
+              } 
+              else if(endX - startX < -10){//从右到左，即左按钮
+                if(index==imgLen-1){
+                  $banner_ul.css({left: '0'});
+                  index=0;
+                }else{
+                 move(index,windowWidth,X);
+                }
+                direction=1;
+              }   
+            } catch (e) {
+                alert('touchMoveFunc：' + e.message);
+            }
+        }
+
+      //touchend事件
+        function touchEndFunc(evt) {
+          try {
+            if(X > 150 || X<-150){
+              (direction==0) ? index-- :index++;
+              slideMo();
+            }else{
+              $banner_ul.animate({left:-index * liWidth + 'px'});
+            }
+            autoPalyMo();
+            // if(autoPlay==true){
+            //   auto=setInterval(function(){//计时器，自动轮番
+            //   var i= index++;
+            //   slideMo();
+            //   },interTime);
+            // }
+            
+          } catch (e) {
+            alert('touchEndFunc：' + e.message);
+          }
+        }
+
+         //绑定事件
+        function bindEvent() {
+            $banner_ul[0].addEventListener('touchstart', touchSatrtFunc, false);
+            $banner_ul[0].addEventListener('touchmove', touchMoveFunc, false);
+            $banner_ul[0].addEventListener('touchend', touchEndFunc, false);
+        }
+
+        //判断是否支持触摸事件
+        function isTouchDevice() {
+          try {
+            document.createEvent("TouchEvent");
+            // alert("支持TouchEvent事件！");
+     
+            bindEvent(); //绑定事件
+          } catch (e) {
+            //alert("不支持TouchEvent事件！" + e.message);
+          }
+        }
+
+        window.onload = isTouchDevice();
+    }
+     mobileTouch({
+                container :'.j-banner-01',            
+                showNumber : true,        
+                autoPlay : true,
+                slideArrow:true,
+                slideArrow : true,
+                dotClick : true,
+                delayTime: 500,
+                interTime: 3000
+            });
+     
+
+
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,11 @@
+{
+    "name": "jquery",
+    "version": "1.9.0",  	 
+    "description": "",
+    "homepage": "",
+    "author": "",     
+    "tests": ["jquery"],
+    "output": {
+        "jquery.js": "."
+    },"parent":"../package.json" 
+}

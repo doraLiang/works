@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script src="../../js/jquery-1.9.1.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../../stylesheets/slide.css" />
+    </head>
+    <body>
+        <!-- 全屏轮播HTML代码  -->
+        <div class="main-content j-banner">
+            <ul class="clearfloat bh">
+                <li class="bg1"></li>
+                <li class="bg2"></li>
+                <li class="bg3"></li>
+                <li class="bg4"></li>
+                <li class="bg5"></li>
+            </ul>
+        </div>
+        <script src="../../js/slider-effect.js"></script>
+        <script>
+        var slide=new SlideMethod({
+            container : '.j-banner',
+            slideEffect :'leftmove',
+            showNumber : 2, 
+            scrollNum    : 2 ,
+            ispnLoop     :false,
+            
+        });
+    </script>
+    </body>
+</html>

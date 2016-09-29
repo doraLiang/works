@@ -56,7 +56,11 @@ function circle(percent,movex,movey,c1,c2,con,num){
     // //生成中间百分比文字
     ctx.font="15px arial";
     ctx.fillStyle="#000000";
-    ctx.fillText(p+"%",((r+movex)-12),((r+movey)+5));
+    ctx.textAlign = 'center';  
+    ctx.textBaseline = 'middle'; 
+    ctx.moveTo((r+movex),(r+movey));
+    ctx.fillText(p+"%", (r+movex),(r+movey)); 
+   // ctx.fillText(p+"%",((r+movex)-12),((r+movey)+5));
     // ctx.font="15px arial";
     // ctx.fillStyle="#000000";
     ctx.fillText(con,((r+movex)-(num*3)),((r+movey)+45));

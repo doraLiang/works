@@ -63,6 +63,6 @@ function circle(percent,movex,movey,c1,c2,con,num){
    // ctx.fillText(p+"%",((r+movex)-12),((r+movey)+5));
     // ctx.font="15px arial";
     // ctx.fillStyle="#000000";
-    ctx.fillText(con,((r+movex)-(num*3)),((r+movey)+45));
+    ctx.fillText(con,(r+movex),(r+movey));
     // ctx.fillText(con,(x/2),(y*2+15));
 }

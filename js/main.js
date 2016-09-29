@@ -2,11 +2,11 @@ $(document).ready(function(){
     var height=$(window).height();
     var ele=[];
     $('body').height(height);
-    circle(95/100,0,0,"#b3ccdc","#6899ba",'html',4);
-    circle(90/100,80,50,"#f8e4b6","#f2c96d",'css',3);
-    circle(80/100,0,100,"#a3c7a6","#478f4d",'js',2);
-    circle(88/100,160,0,"#dfa4cb","#c04a98",'jq',2);
-    circle(60/100,160,100,"#dda3a1","#bb4843",'seaJs',5);
+    circle(95/100,0,0,"#b3ccdc","#6899ba",'html');
+    circle(90/100,80,50,"#f8e4b6","#f2c96d",'css');
+    circle(80/100,0,100,"#a3c7a6","#478f4d",'js');
+    circle(88/100,160,0,"#dfa4cb","#c04a98",'jq');
+    circle(60/100,160,100,"#dda3a1","#bb4843",'seaJs');
 
     //nav点击事件
     $('.head-nav').find('li').on('click',function(){
@@ -21,7 +21,7 @@ $(document).ready(function(){
     })
 
 });
-function circle(percent,movex,movey,c1,c2,con,num){
+function circle(percent,movex,movey,c1,c2,con){
 	var p=percent * 100;
 	var c=document.getElementById('canvas');
     var ctx=c.getContext("2d");
@@ -63,6 +63,6 @@ function circle(percent,movex,movey,c1,c2,con,num){
    // ctx.fillText(p+"%",((r+movex)-12),((r+movey)+5));
     // ctx.font="15px arial";
     // ctx.fillStyle="#000000";
-    ctx.fillText(con,(r+movex),(r+movey+r));
+    ctx.fillText(con,(r+movex),(2*r+movey+10));
     // ctx.fillText(con,(x/2),(y*2+15));
 }

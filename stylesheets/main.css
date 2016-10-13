@@ -18,8 +18,9 @@ li{
     cursor: pointer;
     width:100px;
     color:#ffffff;
-    background:#36afd7;
+    /*background:#36afd7;*/
     text-align: center;
+    float:left;
 }
 .head-nav ul li:hover{
    background:#81d6f2;

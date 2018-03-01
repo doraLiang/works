@@ -1,5 +1,4 @@
 <?php   
-echo 'a';
 $imgurl = $_GET['imgurl'];
 curl_url($imgurl);
 function curl_url($url,$type=0,$timeout=30){     
@@ -63,6 +62,6 @@ function curl_url($url,$type=0,$timeout=30){
     elseif($type==3) $msg['data'] = "<img src='data:{$httpContentType};base64,{$base_64}' />";  
     else $msg['msg'] = '未知返回需求！';     
     unset($info,$data,$base_64);  
-    return $msg;   
+    echo($msg);   
 }    
 ?> 
